@@ -1,2 +1,1 @@
-def main():
-    print "this is a grid game"
+from mnk_game import MNK_Game
