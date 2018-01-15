@@ -71,9 +71,9 @@ class MNK_Game():
 
     def play(self, draw_grid=False):
         """Play the game until there is a winner or the board is full."""
-        while not self.winner_found and not self.tie_game:
+        while not (self.winner_found or self.tie_game or self.grid_full()):
             try:
-                location = self.players[turn - 1].get_move(self.grid) # provide the player with the grid, and get their move
+                location = self.players[self.turn - 1].get_move(self.grid) # provide the player with the grid, and get their move
                 location = location[::-1] # reverse location. (y, x) -> (x, y). numpy does things backwarsd
                 self.try_move(location)
 
