@@ -6,7 +6,7 @@ class MNK_Game():
     def __init__(self, grid_width, grid_height, win_chain_length, player1, player2, symbols={1:'x', 2:'o'}):
         self.width = grid_width
         self.height = grid_height
-        self.grid = np.zeros(shape=(self.width, self.height), dtype=np.int8)
+        self.grid = np.zeros(shape=(self.height, self.width), dtype=np.int8)
         self.win_chain_length = win_chain_length
         self.turn = 1
         self.winner_found = False
@@ -37,10 +37,10 @@ class MNK_Game():
     def draw(self):
         """Print the grid to console 'nicely'."""
         print # new line
-        print '  ', '   '.join(str(x) for x in range(len(self.grid))) # x labels
+        print '  ', '   '.join(str(x) for x in range(len(self.grid[0]))) # x labels
         for i in range(len(self.grid)):
             for j in range(len(self.grid[i])):
-                print ('|' if j > 0 else '{0} '.format(i)), # filler or vertical edge between cells
+                print ('|' if j > 0 else '{0} '.format(i)), # vertical edge between cells or y label
                 if self.grid[i, j] == 0:
                     print ' ', # empty space
                 elif self.grid[i, j] in self.player_symbols:
@@ -49,7 +49,7 @@ class MNK_Game():
                     print self.grid[i, j], # if we don't have a symbol for some reason, just draw the turn number
             print # new line
             if i < self.height - 1:
-                print ' ', '---+' * (len(self.grid) - 1) + '---' # between rows
+                print ' ', '---+' * (len(self.grid[i]) - 1) + '---' # between rows
         print # new line
 
 
