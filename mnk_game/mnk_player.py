@@ -23,6 +23,7 @@ class RealPlayer(Player):
         Player.__init__(self)
 
     def get_move(self, grid):
+        """Gets move from player input."""
         return tuple(int(x) for x in split("[,\s]", raw_input("Your turn. Enter a location (ex. 0,1): ").strip()))
 
 
@@ -33,6 +34,7 @@ class RandomPlayer(Player):
         Player.__init__(self)
 
     def get_move(self, grid):
+        """Randomly picks an open space on the grid."""
         x, y = where(grid == 0)
         i = random.randint(len(x))
         return (x[i], y[i])[::-1]
